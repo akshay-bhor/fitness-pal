@@ -1,0 +1,852 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Fitness_pal.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Fitness Pal</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,100italic,400italic|Roboto+Condensed|Montserrat:100,200,300,400,500,600,700&amp;lang=en" rel="stylesheet">
+    <link href="/img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <style>
+   body {
+    background: #fff;
+    margin: 40px 0 0 0;
+    padding: 0;
+    color: #212121;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 20px;
+    overflow-x: hidden;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease
+}
+
+   .hidden {
+       display:none!important;
+   }
+
+a {
+    color: #0070bf
+}
+
+.subtext {
+    font-size: 80%;
+    color:#777;
+}
+
+img {
+    max-width: 98%
+}
+
+.jumbotron {
+    background: none;
+    padding: 20px 0
+}
+
+.home-main {
+        padding:0!important;
+        margin:0!important;
+}
+.home-main .h1 {
+     font-size:60px;   
+     font-weight: 700;
+}
+.home-main .home-main-text {
+        padding: 80px 20px 80px 20px;
+
+}
+.home-main-l {
+    height:85vh;
+}
+
+@media(min-width:767px) {
+    .home-main .home-main-text {
+        padding: 100px 40px 100px 200px;
+
+    }
+}
+.main-imgback {
+        background-image:url("/img/home-main.png");
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:bottom;
+        height:85vh;
+}
+.home-mid {
+    background:#FFDD33;
+    max-height:80vh;
+    padding:150px 200px;
+}
+.home-mid-text {
+   padding:10px 100px 10px 100px;
+   text-align:center;
+}
+.home-mid .h2, .home-bottom .h2 {
+         font-size:48px;   
+         font-weight: 700;
+}
+.fsearch-big {
+        width:90%;
+        border-radius:40px 0 0 40px;
+        height: 70px;
+        padding:10px 10px 10px 20px;
+        max-width:100%;
+        border-right:none;
+}
+.fsearch-big:active, .fsearch-big:hover, .fsearch-big:focus {
+    outline: none;
+    border:1px solid #ccc;
+    border-right:none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.fsearch-btn {
+       height: 70px;
+       width:8%;
+       border-radius:0 40px 40px 0;
+       background:#fff;
+       line-height:1;
+       border: 1px solid #ccc;
+       border-left:none;
+}
+.fsearch-btn:active, .fsearch-btn:hover, .fsearch-btn:focus {
+    outline: none;
+    border:1px solid #ccc;
+    border-left:none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.fresult-holder {
+    margin-top:50px;
+}
+.fresult-row {
+    padding: 16px 8px;
+    font-size: 16px;
+    border-bottom: 1px solid #eeeeee;
+    color: #212121; 
+}
+.home-bottom {
+    height:100vh;
+    padding:100px 200px 100px 200px;
+}
+.hbottom-text-up {
+    padding:0 200px 0 200px;
+}
+.home-bottom .bot-cols {
+    margin-top:80px;      
+}
+.home-bottom .h3 {
+    font-weight:700;
+}
+.home-bottom .icon-big {
+        font-size:60px;
+}
+@media(max-width:767px) {
+        .home-mid {
+            background:#FFDD33;
+            max-height:80vh;
+            padding:50px 0 70px 0;
+        }
+        .home-mid-text {
+            padding:10px 30px 10px 30px;
+        }
+        .home-main .h1 {
+            font-size:40px;
+        }
+        .home-mid .h2, .home-bottom .h2 {
+            font-size:30px;   
+        }
+        .main-imgback {
+            height:60vh;
+        }
+        .home-main-l {
+            height:70vh;
+        }
+        .fsearch-big {
+            width:80%;
+        }
+        .fsearch-btn {
+            width:20%;
+        }
+        .home-bottom {
+            height:auto;
+            padding:80px 20px 80px 20px;
+        }
+        .hbottom-text-up {
+            padding:0;
+        }
+        .home-bottom .bot-cols {
+             margin-top:40px;      
+        }
+        .home-bottom .mob-pad {
+             padding-top:50px;      
+        }
+}
+.back {
+    background: rgba(0, 0, 0, .4)
+}
+
+.list-group-item {
+    padding: 10px!important
+}
+
+.cpad {
+    padding-left: 8px;
+    padding-right: 8px
+}
+.card {
+  background: #fff;
+  border-radius: 2px;
+  height: auto;
+  margin: 20px auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.card-pad {
+  padding: 20px 15px!important;
+}
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #fff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease
+}
+
+.sidebar-content {
+    position: relative;
+    padding: 30px 0;
+    margin-bottom: 100px
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    overflow: hidden
+}
+
+.sidebar-nav {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.sidebar-nav li {
+    text-indent: 10px;
+    line-height: 50px;
+    font-weight:500;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #0070bf;
+    background: rgba(204, 204, 204, .2)
+}
+
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none
+}
+
+.brand,
+.t-brand {
+    height: 60px;
+    text-indent: 20px;
+    font-size: 30px;
+    font-weight: 500;
+    overflow: hidden
+}
+
+.top-fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26)
+}
+
+.navbar {
+    border-radius: 0;
+    background: #0070bf;
+    color: #fff
+}
+
+.navbar a {
+    color: #fff
+}
+
+.navbar .brand {
+    padding: 0 50px
+}
+
+.navbar .brand-img {
+        max-height:40px; 
+}
+
+.navbar .t-brand {
+    padding: 0 5px
+}
+
+.block {
+    display: block;
+    overflow: hidden
+}
+
+.iblock {
+    display: inline-block
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 70px;
+    font-weight: 200
+}
+
+.close-c {
+    top: -15px!important;
+    font-size: 50px;
+    font-weight: 700;
+    color: #000
+}
+
+.primary-nav {
+    padding: 6px 0;
+    margin: 0;
+    min-height: auto
+}
+
+#menu-open {
+    font-size: 26px
+}
+
+#login {
+    max-width: 400px;
+    margin: auto
+}
+
+.btn-c,
+.btn-c:hover,
+.btn-c:active,
+.btn-c:focus, .list-group-item .active {
+    color: #fff;
+    background: #0070bf!important;
+    border-radius:2px;
+    padding:15px 25px 15px 25px;
+    font-size:16px;
+    font-weight:600;
+    margin-top:15px;
+}
+
+td {
+    padding: 5px 10px;
+    box-sizing: border-box
+}
+
+@media(max-width:767px) {
+    td {
+        padding: 5px
+    }
+    .clabel {
+        padding: 0 15px;
+        margin-right: 5px
+    }
+    .mtmar {
+        margin-top: 20px;
+        overflow: hidden;
+        box-sizing: border-box
+    }
+    .nav-bottom {
+        background-color: #fff;
+        box-shadow: 0 0 0 rgba(0, 0, 0, .16), 0 -1px 5px rgba(0, 0, 0, .16);
+        color: #0070bf;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        z-index: 10;
+        height: 50px;
+        font-size: 125%
+    }
+    .nav-bottom a {
+        color: #0070bf;
+        text-decoration: none
+    }
+    .grid-3 {
+        width: 25%;
+        box-sizing: border-box
+    }
+}
+
+@media(min-width:768px) {
+    #sidebar-wrapper {
+        width: 0
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px
+    }
+    #page-content-wrapper {
+        position: relative
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0
+    }
+    .ptpad {
+        padding-top: 28px
+    }
+    .nav-bottom {
+        display: none
+    }
+}
+
+.tpad {
+    padding: 10px 0;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.tpad-5 {
+    padding: 5px 0;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.tmar {
+    margin: 10px 0!important;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+.tmar-big {
+    margin-top: 30px!important;
+    overflow: hidden;
+    box-sizing: border-box
+}
+
+input[type="checkbox"] {
+    width: 22px;
+    height: 22px
+}
+
+input[type="checkbox"]:checked {
+    background-color: #2196F3!important
+}
+
+.clabel {
+    padding: 0 10px
+}
+
+th {
+    text-align: center!important
+}
+
+.btn-mar {
+    margin-top: 6px
+}
+
+.l {
+    float: left
+}
+
+.r {
+    float: right
+}
+
+.clr {
+    clear: both
+}
+
+.big {
+    font-size: 125%
+}
+
+.small {
+    font-size: 80%
+}
+
+.bold {
+    font-weight: 600;        
+}
+
+.imp {
+    background-color: yellow
+}
+
+.act {
+    padding-left: 2px!important;
+    padding-right: 2px!important
+}
+
+.btn-primary {
+    background-color: #0070bf;
+    border-color: #0070bf
+}
+
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary:hover {
+    background-color: #0070bf;
+    border-color: #0070bf
+}
+
+.wave {
+    position: relative
+}
+
+.wave:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: -webkit-radial-gradient(circle, #353434 10%, transparent 10.01%);
+    background-image: -o-radial-gradient(circle, #353434 10%, transparent 10.01%);
+    background-image: radial-gradient(circle, #353434 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    -webkit-background-size: 1000% 1000%;
+    background-size: 1000% 1000%;
+    background-position: 50%;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: background .5s, opacity 1s;
+    -o-transition: background .5s, opacity 1s;
+    transition: background .5s, opacity 1s
+}
+
+.wave:active:after {
+    -webkit-background-size: 0 0;
+    background-size: 0 0;
+    opacity: .2;
+    -webkit-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s
+}
+
+.wave a {
+    display: block
+}
+
+.tgreen {
+    color: green
+}
+
+.tred {
+    color: red
+}
+
+.tblue {
+    color: #0070bf;
+}
+
+.grid-1 {
+    width: 10%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+
+.txt-right {
+    text-align:right;
+}
+
+.grid-8 {
+    width: 80%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+.grid-2 {
+    width: 20%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+.grid-5 {
+    width: 50%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+.fact-chart .grid-2 {
+    padding-top:30px;
+}
+
+.grid-3 {
+    width: 30%;
+    box-sizing: border-box
+}
+
+.date-ip-big {
+    margin-top:15px;
+    height:55px;
+    font-size:24px;
+}
+
+@media only screen and (min-width:1221px) {
+    .mob {
+        display: none
+    }
+}
+
+.circle-div {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 8px 2px;
+    vertical-align: middle;
+    text-align: center;
+    font-size:16px;
+    font-weight:700;
+    display: inline-block;
+    overflow: hidden;
+    background: #fff;
+    color: #000;
+    border: 5px solid #0070bf;
+    box-sizing:border-box;
+}
+
+.circle-div-big {
+    width: 120px;
+    height: 120px;
+    padding: 26px 10px; 
+    font-size:22px;
+}
+
+.gold {
+    color: #ffcc00
+}
+
+.silver {
+    color: #b3b3b3
+}
+
+.bronze {
+    color: #CD7F32
+}
+
+h2 {
+    margin: 0!important
+}
+
+p {
+    important;
+    margin: 0!important
+}
+
+.pointer {
+    cursor:pointer;
+}
+
+.sticky {
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    background: url(/images/support.svg) no-repeat;
+    height: 64px;
+    width: 64px;
+    z-index: 1000
+}
+.footer {
+     height:auto;
+     color:#757575;
+     background:#efefef;
+     font-size:16px;
+     border-top:#efefef;
+}
+.foot-links {
+    padding:30px;
+}
+.foot-cinfo {
+    padding:0 15px 15px 15px;
+}
+.signup, .login, .goal, .account {
+    max-width:800px;
+    margin:auto;
+    padding: 100px 50px;
+}
+.ac-usr-det {
+    padding:50px 60px!important;
+}
+.usr-icon {
+    width:30%;
+}
+.usr-icon .icon-big {
+       font-size:80px;
+       vertical-align:middle;
+}
+.usr-info {
+    width:70%;
+}
+.goal, .account {
+    padding:50px;
+}
+.form-c {
+    border-radius:2px;
+    padding:10px;
+    height:50px;
+    border:1px solid #ccc;
+}
+.goal-holder {
+    margin-top:20px;
+    padding: 20px 0;
+}
+.fact-chart {
+    padding: 30px 0;
+}
+.grid-6 {
+    width: 60%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+.grid-4 {
+    width: 40%;
+    padding: 0 5px;
+    box-sizing: border-box
+}
+.diary-content {
+    margin-top:20px;
+    padding:15px 0;
+}
+.cal-info {
+    padding:30px 20px;   
+}
+.ftype-title, .ftype-bottom {
+    padding: 10px 15px;
+}
+.ftype-title {
+    border-bottom: 1px solid #ddd;
+}
+.ftype-bottom {
+    background: #f5f5f5;
+    cursor:pointer
+}
+.text-right {
+    text-align: right;
+}
+.aj-food-result {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+.delete-c {
+    color:#ccc;
+}
+.delete-c:hover {
+    color:#f00;
+}
+@media(max-width:767px) {
+    .signup, .login, .goal, .account {
+        padding:50px 15px;
+    }
+    .ac-usr-det {
+        padding:50px 30px!important;
+    }
+    .circle-div-big {
+        width: 100px;
+        height: 100px;
+        padding: 15px 10px; 
+        font-size:22px;
+    }
+    .fact-chart .grid-2 {
+        font-size:16px;
+    }
+    
+    .datepicker .grid-2 .btn-c {
+        padding: 15px 8px 15px 8px;
+    }
+    .aj-food-result .grid-5 .grid-2 {
+        width:30%;
+    }
+}
+    </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div id="wrapper">
+    <div id="sidebar-wrapper">
+        <div class="sidebar-content">
+            <div class="brand block" id="sidebaruname" runat="server"></div>
+            <div id="sidebarnav" runat="server">
+                
+            </div>
+        </div>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="top-fixed">
+            <div class="navbar primary-nav">
+                <div class="container">
+                    <div class="l"><a href="#menu-open" id="menu-open"><span class="glyphicon glyphicon-menu-hamburger small"></span></a>
+                        <span class="t-brand"><a href="/"><img class="brand-img" src="/img/site-name.png"></img></a></span></div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer>
+                <div class="block footer">
+                    <div class="foot-links text-center">
+                        <span class="text-center"><a href="/food">Calorie Counter</a> &nbsp;&nbsp; <a href="/about">About</a> &nbsp;&nbsp; <a href="/terms">Terms</a> &nbsp;&nbsp; <a href="/privacy">Privacy</a> &nbsp;&nbsp; <a href="/contact">Contact</a></span>
+                    </div>
+                    <div class="block text-center foot-cinfo">
+                        <span>&copy; 2019 FitnessPal.com</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+     </div>
+    </form>
+    <script>
+$("#menu-open,#menu-close").click(function(e){e.preventDefault();$("#wrapper").toggleClass("toggled");$("body").toggleClass("back")});
+</script>
+</body>
+</html>
